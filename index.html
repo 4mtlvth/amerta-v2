@@ -9,7 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         html, body { height: 100%; overflow: hidden; }
         body { background: linear-gradient(135deg, #050505 0%, #0d0a08 100%); color: #e5e5e5; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; text-align: center; position: relative; }
-        .video-background { position: fixed; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%); z-index: -2; pointer-events: none; object-fit: cover; }
+        .video-background { position: fixed; top: 50%; left: 50%; width: 100vw; height: 100vh; transform: translate(-50%, -50%); z-index: -2; pointer-events: none; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(7, 5, 4, 0.88); z-index: -1; }
         .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(10, 8, 6, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); }
         .nav-brand { font-size: 1.3rem; font-weight: 800; letter-spacing: 2px; background: linear-gradient(45deg, #ffd700, #d4af37, #b8860b); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; cursor: pointer; }
@@ -44,7 +44,9 @@
 </head>
 <body>
     <!-- Background Video -->
-    <iframe title="Video latar belakang Amerta" aria-hidden="true" tabindex="-1" allow="fullscreen;autoplay" allowfullscreen src="https://www.image2url.com/r2/default/videos/1787352431331-747bd8a2-8f68-438f-9f5a-47e80194eebb.mp4" class="video-background" style="border:none;"></iframe>
+    <video class="video-background" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="https://www.image2url.com/r2/default/videos/1787352431331-747bd8a2-8f68-438f-9f5a-47e80194eebb.mp4" type="video/mp4">
+    </video>
     <div class="overlay"></div>
     <nav class="navbar">
         <div class="nav-brand" onclick="showPage('homePage')">Amerta</div>

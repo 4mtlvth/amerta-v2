@@ -7,340 +7,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        
-        html, body {
-            height: 100%;
-            overflow: hidden; /* Mencegah scrollbar utama */
-        }
-
-        body { 
-            background: linear-gradient(135deg, #050505 0%, #0d0a08 100%);
-            color: #e5e5e5; 
-            display: flex; 
-            flex-direction: column;
-            justify-content: center;
-            align-items: center; 
-            min-height: 100vh; 
-            text-align: center; 
-            position: relative; 
-        }
-
-        /* --- BACKGROUND VIDEO --- */
-        .video-background {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 100vw;
-            height: 56.25vw;
-            min-height: 100vh;
-            min-width: 177.77vh;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            pointer-events: none;
-            object-fit: cover;
-        }
-
-        /* --- OVERLAY GELAP --- */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(7, 5, 4, 0.88); 
-            z-index: -1;
-        }
-
-        /* --- NAVBAR --- */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 8, 6, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-        }
-
-        .nav-brand {
-            font-size: 1.3rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, #ffd700, #d4af37, #b8860b);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        /* Menu Garis 3 Dropdown */
-        .nav-links {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            width: 220px;
-            background: rgba(10, 8, 6, 0.96);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            display: flex;
-            flex-direction: column;
-            list-style: none;
-            border-left: 1px solid rgba(212, 175, 55, 0.2);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: -5px 10px 20px rgba(0,0,0,0.5);
-            transform: translateY(-10px);
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-links.active {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .nav-links li {
-            width: 100%;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .nav-links li:last-child {
-            border-bottom: none;
-        }
-
-        .nav-links a {
-            display: block;
-            width: 100%;
-            padding: 16px 20px;
-            color: #b5a89e;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-align: left;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover {
-            background: rgba(212, 175, 55, 0.1);
-            color: #ffd700;
-            padding-left: 25px;
-        }
-
-        /* Tombol Hamburger */
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 21px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 100%;
-            height: 3px;
-            background-color: #ffd700;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        /* --- TAMPILAN PAGE / HALAMAN SPESIFIK --- */
-        .page {
-            display: none; 
-            width: 100%;
-            max-width: 700px;
-            padding: 20px;
-            margin: auto;
-            position: relative;
-            z-index: 1;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .page.active {
-            display: flex; 
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- 1. TAMPILAN BERANDA --- */
-        .logo-img { 
-            width: 150px; 
-            height: 150px; 
-            object-fit: cover; 
-            border-radius: 50%; 
-            border: 3px solid #d4af37; 
-            margin-bottom: 25px; 
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.4), 
-                        0 0 70px rgba(140, 88, 48, 0.2), 
-                        inset 0 0 15px rgba(255, 215, 0, 0.3);
-            background-color: #120e0a; 
-        }
-        
-        .logo { 
-            font-size: 2.8rem; 
-            font-weight: 800; 
-            letter-spacing: 4px; 
-            background: linear-gradient(45deg, #ffd700, #d4af37, #b8860b); 
-            background-clip: text; 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            margin-bottom: 15px; 
-            text-transform: uppercase;
-            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.3));
-        }
-
-        p.slogan { 
-            color: #a39890; 
-            font-size: 1.1rem; 
-            line-height: 1.8; 
-            font-weight: 500;
-        }
-
-        /* --- 2. TAMPILAN KHUSUS ABOUT --- */
-        .about-card {
-            background: rgba(13, 10, 8, 0.85);
-            border-left: 4px solid #ffd700;
-            padding: 35px;
-            border-radius: 0 15px 15px 0;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            text-align: left;
-            width: 100%;
-        }
-
-        .page-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #ffd700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        .about-text {
-            color: #b5a89e;
-            font-size: 0.98rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
+        html, body { height: 100%; overflow: hidden; }
+        body { background: linear-gradient(135deg, #050505 0%, #0d0a08 100%); color: #e5e5e5; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; text-align: center; position: relative; }
+        .video-background { position: fixed; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%); z-index: -2; pointer-events: none; object-fit: cover; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(7, 5, 4, 0.88); z-index: -1; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(10, 8, 6, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); }
+        .nav-brand { font-size: 1.3rem; font-weight: 800; letter-spacing: 2px; background: linear-gradient(45deg, #ffd700, #d4af37, #b8860b); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; cursor: pointer; }
+        .nav-links { position: absolute; top: 100%; right: 0; width: 220px; background: rgba(10, 8, 6, 0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; list-style: none; border-left: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 1px solid rgba(212, 175, 55, 0.2); box-shadow: -5px 10px 20px rgba(0,0,0,0.5); transform: translateY(-10px); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .nav-links li { width: 100%; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+        .nav-links li:last-child { border-bottom: none; }
+        .nav-links a { display: block; width: 100%; padding: 16px 20px; color: #b5a89e; text-decoration: none; font-size: 0.95rem; font-weight: 600; text-align: left; transition: all 0.2s ease; cursor: pointer; }
+        .nav-links a:hover { background: rgba(212, 175, 55, 0.1); color: #ffd700; padding-left: 25px; }
+        .menu-toggle { display: flex; flex-direction: column; justify-content: space-between; width: 28px; height: 21px; background: transparent; border: none; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 100%; height: 3px; background-color: #ffd700; border-radius: 3px; transition: all 0.3s ease; }
+        .page { display: none; width: 100%; max-width: 700px; padding: 20px; margin: auto; position: relative; z-index: 1; animation: fadeIn 0.4s ease-in-out; }
+        .page.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .logo-img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 3px solid #d4af37; margin-bottom: 25px; box-shadow: 0 0 35px rgba(212, 175, 55, 0.4), 0 0 70px rgba(140, 88, 48, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.3); background-color: #120e0a; }
+        .logo { font-size: 2.8rem; font-weight: 800; letter-spacing: 4px; background: linear-gradient(45deg, #ffd700, #d4af37, #b8860b); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; text-transform: uppercase; filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.3)); }
+        p.slogan { color: #a39890; font-size: 1.1rem; line-height: 1.8; font-weight: 500; }
+        .about-card { background: rgba(13, 10, 8, 0.85); border-left: 4px solid #ffd700; padding: 35px; border-radius: 0 15px 15px 0; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); text-align: left; width: 100%; }
+        .page-title { font-size: 1.6rem; font-weight: 700; color: #ffd700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+        .about-text { color: #b5a89e; font-size: 0.98rem; line-height: 1.8; margin-bottom: 15px; }
         .about-text-last { margin-bottom: 0; }
-
-        /* --- 3. TAMPILAN KHUSUS GALERI --- */
-        .gallery-card {
-            background: rgba(13, 10, 8, 0.85);
-            border-right: 4px solid #d4af37;
-            padding: 35px;
-            border-radius: 15px 0 0 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            width: 100%;
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-
-        .gallery-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .gallery-item {
-            background: rgba(20, 16, 13, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-
-        .gallery-img {
-            width: 100%;
-            max-height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .gallery-caption {
-            padding: 12px;
-            color: #d1c7bc;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-align: center;
-            background: rgba(10, 8, 6, 0.9);
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            padding: 15px 0;
-            width: 100%;
-            z-index: 10;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            color: #8c7d73;
-            font-size: 0.85rem;
-            background: rgba(5, 5, 5, 0.85);
-            backdrop-filter: blur(8px);
-            text-align: center;
-        }
-
-        footer span {
-            color: #d4af37;
-            font-weight: 600;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-        }
-
-        @media (max-width: 768px) {
-            .navbar { padding: 15px 25px; }
-            .logo { font-size: 2.2rem; }
-            .logo-img { width: 120px; height: 120px; }
-            p.slogan { font-size: 0.95rem; }
-        }
+        .gallery-card { background: rgba(13, 10, 8, 0.85); border-right: 4px solid #d4af37; padding: 35px; border-radius: 15px 0 0 15px; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); width: 100%; max-height: 70vh; overflow-y: auto; }
+        .gallery-grid { display: flex; flex-direction: column; gap: 20px; margin-top: 15px; }
+        .gallery-item { background: rgba(20, 16, 13, 0.8); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        .gallery-img { width: 100%; max-height: 250px; object-fit: cover; display: block; }
+        .gallery-caption { padding: 12px; color: #d1c7bc; font-size: 0.9rem; font-weight: 500; text-align: center; background: rgba(10, 8, 6, 0.9); border-top: 1px solid rgba(212, 175, 55, 0.1); }
+        footer { position: fixed; bottom: 0; left: 0; padding: 15px 0; width: 100%; z-index: 10; border-top: 1px solid rgba(212, 175, 55, 0.1); color: #8c7d73; font-size: 0.85rem; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(8px); text-align: center; }
+        footer span { color: #d4af37; font-weight: 600; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+        @media (max-width: 768px) { .navbar { padding: 15px 25px; } .logo { font-size: 2.2rem; } .logo-img { width: 120px; height: 120px; } p.slogan { font-size: 0.95rem; } }
     </style>
 </head>
 <body>
-
     <!-- Background Video -->
-    <iframe title="Video latar belakang Amerta" aria-hidden="true" tabindex="-1" allow="fullscreen;autoplay" allowfullscreen src="https://streamable.com/e/fs94gd?autoplay=1&muted=1&loop=1" class="video-background" style="border:none;"></iframe>
-
+    <iframe title="Video latar belakang Amerta" aria-hidden="true" tabindex="-1" allow="fullscreen;autoplay" allowfullscreen src="https://www.image2url.com/r2/default/videos/1787352431331-747bd8a2-8f68-438f-9f5a-47e80194eebb.mp4" class="video-background" style="border:none;"></iframe>
     <div class="overlay"></div>
-
-    <!-- Bar Menu Navbar -->
     <nav class="navbar">
         <div class="nav-brand" onclick="showPage('homePage')">Amerta</div>
-        
-        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka Menu" aria-expanded="false" aria-controls="navLinks">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
         <ul class="nav-links" id="navLinks">
             <li><a onclick="showPage('homePage')">Beranda</a></li>
             <li><a onclick="showPage('aboutPage')">Tentang</a></li>
@@ -348,116 +56,39 @@
             <li><a href="https://discord.gg/eus8bBmPU" target="_blank" rel="noopener noreferrer">Discord Resmi</a></li>
         </ul>
     </nav>
-
-    <!-- HALAMAN 1: BERANDA -->
     <div id="homePage" class="page active">
         <img src="https://i.ibb.co.com/VcKb2pR2/download-2-removebg-preview.png" alt="Logo Amerta" class="logo-img" decoding="async">
         <div class="logo">AMERTA</div>
-        <p class="slogan">Di sini, tidak ada kasta.<br>
-        Tidak ada tinggi dan rendah.<br>
-        Semua setara dalam ruang yang sama.</p>
+        <p class="slogan">Di sini, tidak ada kasta.<br> Tidak ada tinggi dan rendah.<br> Semua setara dalam ruang yang sama.</p>
     </div>
-
-    <!-- HALAMAN 2: TENTANG -->
     <div id="aboutPage" class="page">
         <div class="about-card">
             <div class="page-title">Tentang Amerta</div>
-            <p class="about-text">
-                <strong>Amerta</strong> lahir dari sebuah visi sederhana: menciptakan suaka digital yang murni bagi para gamer yang lelah dengan toksisitas dan batasan hierarki. Di dunia luar, level, pangkat, dan pencapaian sering kali menentukan siapa yang didengar. Namun di sini, lingkaran pertemanan dibentuk atas dasar solidaritas, keseruan bermain, dan rasa saling menghargai.
-            </p>
-            <p class="about-text about-text-last">
-                Baik Anda seorang pemain kasual yang ingin melepas penat setelah seharian beraktivitas, maupun pemain kompetitif yang mencari partner handal, Amerta adalah rumah bagi siapa saja yang menghargai kebersamaan sejati.
-            </p>
+            <p class="about-text"><strong>Amerta</strong> lahir dari sebuah visi sederhana: menciptakan suaka digital yang murni bagi para gamer yang lelah dengan toksisitas dan batasan hierarki. Di dunia luar, level, pangkat, dan pencapaian sering kali menentukan siapa yang didengar. Namun di sini, lingkaran pertemanan dibentuk atas dasar solidaritas, keseruan bermain, dan rasa saling menghargai.</p>
+            <p class="about-text about-text-last">Baik Anda seorang pemain kasual yang ingin melepas penat setelah seharian beraktivitas, maupun pemain kompetitif yang mencari partner handal, Amerta adalah rumah bagi siapa saja yang menghargai kebersamaan sejati.</p>
         </div>
     </div>
-
-    <!-- HALAMAN 3: GALERI FOTO (6 FOTO DARI FREEIMAGE) -->
     <div id="galleryPage" class="page">
         <div class="gallery-card">
             <div class="page-title">Galeri Komunitas</div>
             <div class="gallery-grid">
-                <!-- Foto 1 -->
-                <div class="gallery-item">
-                    <img src="https://iili.io/CZnBBHJ.md.png" alt="Galeri 1 Amerta" class="gallery-img" loading="lazy" decoding="async">
-                    <div class="gallery-caption">✨ Momen Kebersamaan Amerta 1</div>
-                </div>
-                <!-- Foto 2 -->
-                <div class="gallery-item">
-                    <img src="https://iili.io/CZnq4wl.md.png" alt="Galeri 2 Amerta" class="gallery-img" loading="lazy" decoding="async">
-                    <div class="gallery-caption">🔥 Keseruan Mabar Squad 2</div>
-                </div>
-                <!-- Foto 3 -->
-                <div class="gallery-item">
-                    <img src="https://iili.io/CZnqpAx.md.png" alt="Galeri 3 Amerta" class="gallery-img" loading="lazy" decoding="async">
-                    <div class="gallery-caption">🎮 Aksi Solidaritas Komunitas 3</div>
-                </div>
-                <!-- Foto 4 -->
-                <div class="gallery-item">
-                    <img src="https://iili.io/CZnqD8b.md.png" alt="Galeri 4 Amerta" class="gallery-img" loading="lazy" decoding="async">
-                    <div class="gallery-caption">⭐ Dokumentasi Seru 4</div>
-                </div>
-                <!-- Foto 5 -->
-                <div class="gallery-item">
-                    <img src="https://iili.io/CZnCUhl.md.png" alt="Galeri 5 Amerta" class="gallery-img" loading="lazy" decoding="async">
-                    <div class="gallery-caption">🏆 Aktivitas Seru Member 5</div>
-                </div>
-                <!-- Foto 6 -->
-                <div class="gallery-item">
-                    <img src="https://iili.io/CZnCwrX.md.png" alt="Galeri 6 Amerta" class="gallery-img" loading="lazy" decoding="async">
-                    <div class="gallery-caption">🎯 Suasana Hangat Discord Amerta 6</div>
-                </div>
+                <div class="gallery-item"><img src="https://iili.io/CZnBBHJ.md.png" alt="Galeri 1 Amerta" class="gallery-img" loading="lazy" decoding="async"><div class="gallery-caption">✨ Momen Kebersamaan Amerta 1</div></div>
+                <div class="gallery-item"><img src="https://iili.io/CZnq4wl.md.png" alt="Galeri 2 Amerta" class="gallery-img" loading="lazy" decoding="async"><div class="gallery-caption">🔥 Keseruan Mabar Squad 2</div></div>
+                <div class="gallery-item"><img src="https://iili.io/CZnqpAx.md.png" alt="Galeri 3 Amerta" class="gallery-img" loading="lazy" decoding="async"><div class="gallery-caption">🎮 Aksi Solidaritas Komunitas 3</div></div>
+                <div class="gallery-item"><img src="https://iili.io/CZnqD8b.md.png" alt="Galeri 4 Amerta" class="gallery-img" loading="lazy" decoding="async"><div class="gallery-caption">⭐ Dokumentasi Seru 4</div></div>
+                <div class="gallery-item"><img src="https://iili.io/CZnCUhl.md.png" alt="Galeri 5 Amerta" class="gallery-img" loading="lazy" decoding="async"><div class="gallery-caption">🏆 Aktivitas Seru Member 5</div></div>
+                <div class="gallery-item"><img src="https://iili.io/CZnCwrX.md.png" alt="Galeri 6 Amerta" class="gallery-img" loading="lazy" decoding="async"><div class="gallery-caption">🎯 Suasana Hangat Discord Amerta 6</div></div>
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        &copy; 2026 <span>AMERTA Community</span>. All Rights Reserved. Crafted with passion for gamers.
-    </footer>
-
-    <!-- Script JavaScript untuk Buka-Tutup Menu & Perpindahan Halaman -->
+    <footer>&copy; 2026 <span>AMERTA Community</span>. All Rights Reserved. Crafted with passion for gamers.</footer>
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-
-        // Toggle Menu Garis 3
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = navLinks.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', String(isOpen));
-        });
-
-        // Menutup menu jika klik di luar
-        document.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-        });
-
-        // Fungsi Perpindahan Tampilan Halaman
-        function showPage(pageId) {
-            // Sembunyikan semua page
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-
-            // Tampilkan page yang dipilih
-            const selectedPage = document.getElementById(pageId);
-            if (selectedPage) {
-                selectedPage.classList.add('active');
-            }
-
-            // Tutup dropdown menu setelah diklik
-            navLinks.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-        }
-
-        // Tutup menu dengan tombol Escape
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                navLinks.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
+        menuToggle.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = navLinks.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', String(isOpen)); });
+        document.addEventListener('click', () => { navLinks.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); });
+        function showPage(pageId) { const pages = document.querySelectorAll('.page'); pages.forEach(page => page.classList.remove('active')); const selectedPage = document.getElementById(pageId); if (selectedPage) selectedPage.classList.add('active'); navLinks.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); }
+        document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { navLinks.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); } });
     </script>
-
 </body>
 </html>

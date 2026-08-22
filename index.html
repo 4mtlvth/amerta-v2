@@ -33,13 +33,30 @@
         .about-text-last { margin-bottom: 0; }
         .gallery-card { background: rgba(10, 16, 38, 0.84); border-right: 4px solid #4AA3FF; padding: 35px; border-radius: 15px 0 0 15px; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0, 8, 24, 0.62); width: 100%; max-height: 70vh; overflow-y: auto; }
         .gallery-grid { display: flex; flex-direction: column; gap: 20px; margin-top: 15px; }
-        .gallery-item { background: rgba(13, 23, 50, 0.82); border: 1px solid rgba(53, 214, 255, 0.25); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
-        .gallery-img { width: 100%; max-height: 250px; object-fit: cover; display: block; }
+        .gallery-item { background: rgba(13, 23, 50, 0.82); border: 1px solid rgba(53, 214, 255, 0.25); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.4); cursor: zoom-in; transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; }
+        .gallery-item:hover { transform: translateY(-3px); border-color: rgba(53, 214, 255, 0.6); box-shadow: 0 8px 28px rgba(53, 214, 255, 0.16); }
+        .gallery-img { width: 100%; max-height: 250px; object-fit: cover; display: block; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.45s ease; }
+        .gallery-item:hover .gallery-img { transform: scale(1.035); filter: brightness(1.08) saturate(1.08); }
         .gallery-caption { padding: 12px; color: #C9DBF5; font-size: 0.9rem; font-weight: 500; text-align: center; background: rgba(7, 12, 30, 0.90); border-top: 1px solid rgba(53, 214, 255, 0.12); }
         footer { position: fixed; bottom: 0; left: 0; padding: 15px 0; width: 100%; z-index: 10; border-top: 1px solid rgba(53, 214, 255, 0.12); color: #8CA8C8; font-size: 0.85rem; background: rgba(6, 10, 24, 0.86); backdrop-filter: blur(8px); text-align: center; }
         footer span { color: #FFD66B; font-weight: 600; }
+        .gallery-lightbox { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 50px 70px; background: rgba(2, 5, 16, 0.93); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.4s ease, visibility 0.4s ease; }
+        .gallery-lightbox.active { opacity: 1; visibility: visible; pointer-events: auto; }
+        .lightbox-content { position: relative; max-width: min(92vw, 1200px); max-height: 88vh; display: flex; flex-direction: column; align-items: center; animation: lightboxEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .gallery-lightbox:not(.active) .lightbox-content { animation: none; }
+        @keyframes lightboxEnter { from { opacity: 0; transform: scale(0.88) translateY(18px); filter: blur(8px); } to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); } }
+        .lightbox-image { max-width: 92vw; max-height: 78vh; width: auto; height: auto; object-fit: contain; border: 1px solid rgba(53, 214, 255, 0.5); border-radius: 12px; box-shadow: 0 0 45px rgba(53, 214, 255, 0.18), 0 0 90px rgba(139, 124, 255, 0.12), 0 20px 70px rgba(0,0,0,0.65); user-select: none; -webkit-user-drag: none; }
+        .lightbox-caption { margin-top: 14px; color: #DCEBFF; font-size: 0.95rem; text-shadow: 0 0 12px rgba(53, 214, 255, 0.25); }
+        .lightbox-close, .lightbox-nav { position: absolute; border: 1px solid rgba(53, 214, 255, 0.35); background: rgba(8, 15, 36, 0.78); color: #EAF6FF; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s ease; }
+        .lightbox-close:hover, .lightbox-nav:hover { background: rgba(53, 214, 255, 0.16); border-color: rgba(53, 214, 255, 0.75); color: #35D6FF; box-shadow: 0 0 22px rgba(53, 214, 255, 0.18); transform: scale(1.06); }
+        .lightbox-close { top: 22px; right: 22px; width: 46px; height: 46px; border-radius: 50%; font-size: 1.6rem; line-height: 1; z-index: 2; }
+        .lightbox-nav { top: 50%; width: 52px; height: 72px; margin-top: -36px; border-radius: 14px; font-size: 2rem; z-index: 2; }
+        .lightbox-prev { left: 18px; }
+        .lightbox-next { right: 18px; }
+        .lightbox-counter { position: absolute; top: 28px; left: 50%; transform: translateX(-50%); color: #AFC8E8; font-size: 0.82rem; letter-spacing: 1px; background: rgba(8, 15, 36, 0.65); border: 1px solid rgba(53, 214, 255, 0.2); border-radius: 999px; padding: 6px 12px; backdrop-filter: blur(8px); }
+        body.lightbox-open { overflow: hidden; }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
-        @media (max-width: 768px) { .navbar { padding: 15px 25px; } .logo { font-size: 2.2rem; } .logo-img { width: 120px; height: 120px; } p.slogan { font-size: 0.95rem; } }
+        @media (max-width: 768px) { .navbar { padding: 15px 25px; } .logo { font-size: 2.2rem; } .logo-img { width: 120px; height: 120px; } p.slogan { font-size: 0.95rem; } .gallery-lightbox { padding: 70px 52px 35px; } .lightbox-image { max-width: 88vw; max-height: 72vh; } .lightbox-nav { width: 44px; height: 58px; margin-top: -29px; font-size: 1.6rem; } .lightbox-prev { left: 8px; } .lightbox-next { right: 8px; } .lightbox-close { top: 14px; right: 14px; width: 42px; height: 42px; } .lightbox-counter { top: 22px; } }
     </style>
 </head>
 <body>
@@ -83,14 +100,90 @@
             </div>
         </div>
     </div>
+
+    <div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+        <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Tutup galeri">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Foto sebelumnya">&#10094;</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Foto berikutnya">&#10095;</button>
+        <div class="lightbox-counter" id="lightboxCounter">1 / 6</div>
+        <div class="lightbox-content">
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
     <footer>&copy; 2026 <span>AMERTA Community</span>. All Rights Reserved. Crafted with passion for gamers.</footer>
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
         menuToggle.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = navLinks.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', String(isOpen)); });
         document.addEventListener('click', () => { navLinks.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); });
+
         function showPage(pageId) { const pages = document.querySelectorAll('.page'); pages.forEach(page => page.classList.remove('active')); const selectedPage = document.getElementById(pageId); if (selectedPage) selectedPage.classList.add('active'); navLinks.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); }
-        document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { navLinks.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); } });
+
+        const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+        const galleryLightbox = document.getElementById('galleryLightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentGalleryIndex = 0;
+
+        function openGallery(index) {
+            currentGalleryIndex = index;
+            updateGalleryLightbox();
+            galleryLightbox.classList.add('active');
+            galleryLightbox.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('lightbox-open');
+        }
+
+        function updateGalleryLightbox() {
+            const item = galleryItems[currentGalleryIndex];
+            const image = item.querySelector('.gallery-img');
+            const caption = item.querySelector('.gallery-caption');
+            lightboxImage.src = image.currentSrc || image.src;
+            lightboxImage.alt = image.alt;
+            lightboxCaption.textContent = caption ? caption.textContent : image.alt;
+            lightboxCounter.textContent = `${currentGalleryIndex + 1} / ${galleryItems.length}`;
+        }
+
+        function closeGallery() {
+            galleryLightbox.classList.remove('active');
+            galleryLightbox.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('lightbox-open');
+            setTimeout(() => { if (!galleryLightbox.classList.contains('active')) lightboxImage.src = ''; }, 350);
+        }
+
+        function showPreviousGallery() {
+            currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateGalleryLightbox();
+        }
+
+        function showNextGallery() {
+            currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+            updateGalleryLightbox();
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openGallery(index));
+        });
+        lightboxClose.addEventListener('click', closeGallery);
+        lightboxPrev.addEventListener('click', showPreviousGallery);
+        lightboxNext.addEventListener('click', showNextGallery);
+        galleryLightbox.addEventListener('click', (event) => { if (event.target === galleryLightbox) closeGallery(); });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                if (galleryLightbox.classList.contains('active')) closeGallery();
+            }
+            if (!galleryLightbox.classList.contains('active')) return;
+            if (event.key === 'ArrowLeft') showPreviousGallery();
+            if (event.key === 'ArrowRight') showNextGallery();
+        });
     </script>
 </body>
 </html>

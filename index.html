@@ -14,8 +14,8 @@
         }
 
         body { 
-            background: linear-gradient(135deg, #050505 0%, #0d0a08 100%);
-            color: #e5e5e5; 
+            background: linear-gradient(135deg, #080B18 0%, #0E1224 100%);
+            color: #EAF6FF; 
             display: flex; 
             flex-direction: column;
             justify-content: center;
@@ -25,15 +25,13 @@
             position: relative; 
         }
 
-        /* --- BACKGROUND VIDEO --- */
+        /* --- BACKGROUND VIDEO NATIVE HTML5 --- */
         .video-background {
             position: fixed;
             top: 50%;
             left: 50%;
             width: 100vw;
-            height: 56.25vw;
-            min-height: 100vh;
-            min-width: 177.77vh;
+            height: 100vh;
             transform: translate(-50%, -50%);
             z-index: -2;
             pointer-events: none;
@@ -47,7 +45,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(7, 5, 4, 0.88); 
+            background-color: rgba(7, 11, 30, 0.76); 
             z-index: -1;
         }
 
@@ -57,23 +55,23 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(10, 8, 6, 0.85);
+            background: rgba(7, 11, 28, 0.84);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(53, 214, 255, 0.25);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 8, 24, 0.62);
         }
 
         .nav-brand {
             font-size: 1.3rem;
             font-weight: 800;
             letter-spacing: 2px;
-            background: linear-gradient(45deg, #ffd700, #d4af37, #b8860b);
+            background: linear-gradient(45deg, #35D6FF, #8B7CFF, #FF5CC8);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -87,14 +85,14 @@
             top: 100%;
             right: 0;
             width: 220px;
-            background: rgba(10, 8, 6, 0.96);
+            background: rgba(8, 12, 32, 0.94);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             display: flex;
             flex-direction: column;
             list-style: none;
-            border-left: 1px solid rgba(212, 175, 55, 0.2);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            border-left: 1px solid rgba(53, 214, 255, 0.25);
+            border-bottom: 1px solid rgba(53, 214, 255, 0.25);
             box-shadow: -5px 10px 20px rgba(0,0,0,0.5);
             transform: translateY(-10px);
             opacity: 0;
@@ -110,7 +108,7 @@
 
         .nav-links li {
             width: 100%;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(53, 214, 255, 0.12);
         }
 
         .nav-links li:last-child {
@@ -121,7 +119,7 @@
             display: block;
             width: 100%;
             padding: 16px 20px;
-            color: #b5a89e;
+            color: #B9CBE3;
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 600;
@@ -131,8 +129,8 @@
         }
 
         .nav-links a:hover {
-            background: rgba(212, 175, 55, 0.1);
-            color: #ffd700;
+            background: rgba(53, 214, 255, 0.12);
+            color: #35D6FF;
             padding-left: 25px;
         }
 
@@ -152,12 +150,12 @@
         .menu-toggle span {
             width: 100%;
             height: 3px;
-            background-color: #ffd700;
+            background-color: #35D6FF;
             border-radius: 3px;
             transition: all 0.3s ease;
         }
 
-        /* --- TAMPILAN PAGE / HALAMAN SPESIFIK --- */
+        /* --- TAMPILAN HALAMAN (PAGE) --- */
         .page {
             display: none; 
             width: 100%;
@@ -187,29 +185,29 @@
             height: 150px; 
             object-fit: cover; 
             border-radius: 50%; 
-            border: 3px solid #d4af37; 
+            border: 3px solid #4AA3FF; 
             margin-bottom: 25px; 
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.4), 
-                        0 0 70px rgba(140, 88, 48, 0.2), 
-                        inset 0 0 15px rgba(255, 215, 0, 0.3);
-            background-color: #120e0a; 
+            box-shadow: 0 0 35px rgba(53, 214, 255, 0.35), 
+                        0 0 70px rgba(139, 124, 255, 0.20), 
+                        inset 0 0 15px rgba(53, 214, 255, 0.25);
+            background-color: #0B1024; 
         }
         
         .logo { 
             font-size: 2.8rem; 
             font-weight: 800; 
             letter-spacing: 4px; 
-            background: linear-gradient(45deg, #ffd700, #d4af37, #b8860b); 
+            background: linear-gradient(45deg, #35D6FF, #8B7CFF, #FF5CC8); 
             background-clip: text; 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             margin-bottom: 15px; 
             text-transform: uppercase;
-            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.3));
+            filter: drop-shadow(0 0 12px rgba(53, 214, 255, 0.28));
         }
 
         p.slogan { 
-            color: #a39890; 
+            color: #B7C8E8; 
             font-size: 1.1rem; 
             line-height: 1.8; 
             font-weight: 500;
@@ -217,12 +215,12 @@
 
         /* --- 2. TAMPILAN KHUSUS ABOUT --- */
         .about-card {
-            background: rgba(13, 10, 8, 0.85);
-            border-left: 4px solid #ffd700;
+            background: rgba(10, 16, 38, 0.84);
+            border-left: 4px solid #35D6FF;
             padding: 35px;
             border-radius: 0 15px 15px 0;
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 8, 24, 0.62);
             text-align: left;
             width: 100%;
         }
@@ -230,7 +228,7 @@
         .page-title {
             font-size: 1.6rem;
             font-weight: 700;
-            color: #ffd700;
+            color: #35D6FF;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -238,7 +236,7 @@
         }
 
         .about-text {
-            color: #b5a89e;
+            color: #B9CBE3;
             font-size: 0.98rem;
             line-height: 1.8;
             margin-bottom: 15px;
@@ -246,12 +244,12 @@
 
         /* --- 3. TAMPILAN KHUSUS GALERI --- */
         .gallery-card {
-            background: rgba(13, 10, 8, 0.85);
-            border-right: 4px solid #d4af37;
+            background: rgba(10, 16, 38, 0.84);
+            border-right: 4px solid #4AA3FF;
             padding: 35px;
             border-radius: 15px 0 0 15px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 8, 24, 0.62);
             width: 100%;
             max-height: 70vh;
             overflow-y: auto;
@@ -265,8 +263,8 @@
         }
 
         .gallery-item {
-            background: rgba(20, 16, 13, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(13, 23, 50, 0.82);
+            border: 1px solid rgba(53, 214, 255, 0.25);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
@@ -281,22 +279,22 @@
 
         .gallery-caption {
             padding: 12px;
-            color: #d1c7bc;
+            color: #C9DBF5;
             font-size: 0.9rem;
             font-weight: 500;
             text-align: center;
-            background: rgba(10, 8, 6, 0.9);
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            background: rgba(7, 12, 30, 0.90);
+            border-top: 1px solid rgba(53, 214, 255, 0.12);
         }
 
         /* --- 4. TAMPILAN KHUSUS MAP ROBLOX --- */
         .roblox-card {
-            background: rgba(13, 10, 8, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(10, 16, 38, 0.84);
+            border: 1px solid rgba(53, 214, 255, 0.3);
             padding: 30px;
             border-radius: 15px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 8, 24, 0.62);
             width: 100%;
             max-height: 75vh;
             overflow-y: auto;
@@ -310,8 +308,8 @@
         }
 
         .roblox-item {
-            background: rgba(20, 16, 13, 0.9);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(13, 23, 50, 0.9);
+            border: 1px solid rgba(53, 214, 255, 0.25);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
@@ -333,13 +331,13 @@
         }
 
         .roblox-info h3 {
-            color: #ffd700;
+            color: #35D6FF;
             font-size: 1.1rem;
             margin-bottom: 5px;
         }
 
         .roblox-info p {
-            color: #b5a89e;
+            color: #B9CBE3;
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 0;
@@ -348,8 +346,8 @@
 
         .btn-roblox {
             display: inline-block;
-            background: linear-gradient(135deg, #ffd700, #b8860b);
-            color: #050505;
+            background: linear-gradient(135deg, #35D6FF, #8B7CFF);
+            color: #080B18;
             padding: 10px 20px;
             font-size: 0.9rem;
             font-weight: 700;
@@ -357,14 +355,14 @@
             border-radius: 8px;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 15px rgba(53, 214, 255, 0.3);
             align-self: flex-start;
         }
 
         .btn-roblox:hover {
-            background: linear-gradient(135deg, #ffdf33, #d4af37);
+            background: linear-gradient(135deg, #5fe1ff, #9e91ff);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 6px 20px rgba(53, 214, 255, 0.5);
         }
 
         /* --- FOOTER --- */
@@ -375,16 +373,16 @@
             padding: 15px 0;
             width: 100%;
             z-index: 10;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            color: #8c7d73;
+            border-top: 1px solid rgba(53, 214, 255, 0.12);
+            color: #8CA8C8;
             font-size: 0.85rem;
-            background: rgba(5, 5, 5, 0.85);
+            background: rgba(6, 10, 24, 0.86);
             backdrop-filter: blur(8px);
             text-align: center;
         }
 
         footer span {
-            color: #d4af37;
+            color: #FFD66B;
             font-weight: 600;
         }
 
@@ -398,8 +396,11 @@
 </head>
 <body>
 
-    <!-- Background Video -->
-    <iframe allow="fullscreen;autoplay" allowfullscreen src="https://streamable.com/e/fs94gd?autoplay=1&muted=1&loop=1" class="video-background" style="border:none;"></iframe>
+    <!-- Background Video Native HTML5 -->
+    <video class="video-background" autoplay muted loop playsinline preload="auto">
+        <source src="https://pub-0b511e5182704c9e9f2ecd236210385c.r2.dev/amerta-background.mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+    </video>
 
     <div class="overlay"></div>
 
@@ -439,7 +440,7 @@ Semua setara dalam ruang yang sama.</p>
                 <strong>Amerta</strong> lahir dari sebuah visi sederhana: menciptakan suaka digital yang murni bagi para gamer yang lelah dengan toksisitas dan batasan hierarki. Di dunia luar, level, pangkat, dan pencapaian sering kali menentukan siapa yang didengar. Namun di sini, lingkaran pertemanan dibentuk atas dasar solidaritas, keseruan bermain, dan rasa saling menghargai.
             </p>
             <p class="about-text" style="margin-bottom: 0;">
-                Baik Anda seorang pemain kasual yang ingin melepas penat setelah seharian beraktivitas, maupun pemain kompetitif yang mencari partner handal, Amerta adalah rumah bagi siapa saja yang menghargai kebersamaan sejati.
+                Baik kamu seorang pemain kasual yang ingin melepas penat setelah seharian beraktivitas, maupun pemain kompetitif yang mencari partner handal, Amerta adalah rumah bagi siapa saja yang menghargai kebersamaan sejati.
             </p>
         </div>
     </div>
@@ -490,8 +491,7 @@ Semua setara dalam ruang yang sama.</p>
             <div class="roblox-grid">
                 <!-- Map Item -->
                 <div class="roblox-item">
-                    <!-- Ganti link gambar di bawah nanti jika Anda ingin menggunakan foto khusus map Anda -->
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60" alt="Map Roblox Amerta" class="roblox-img">
+                    <img src="https://iili.io/Cb2kXEX.md.webp" alt="Map Roblox Amerta" class="roblox-img">
                     <div class="roblox-details">
                         <div class="roblox-info">
                             <h3>🌐 Amerta Community Experience</h3>

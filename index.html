@@ -71,7 +71,7 @@
             font-size: 1.3rem;
             font-weight: 800;
             letter-spacing: 2px;
-            background: linear-gradient(45deg, #35D6FF, #8B7CFF, #FF5CC8);
+            background: linear-gradient(45deg, #35D6FF, #8B7CFF, #FFD700);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -185,11 +185,11 @@
             height: 150px; 
             object-fit: cover; 
             border-radius: 50%; 
-            border: 3px solid #4AA3FF; 
+            border: 3px solid #35D6FF; 
             margin-bottom: 25px; 
-            box-shadow: 0 0 35px rgba(53, 214, 255, 0.35), 
-                        0 0 70px rgba(139, 124, 255, 0.20), 
-                        inset 0 0 15px rgba(53, 214, 255, 0.25);
+            box-shadow: 0 0 35px rgba(53, 214, 255, 0.4), 
+                        0 0 70px rgba(139, 124, 255, 0.2), 
+                        inset 0 0 15px rgba(255, 215, 0, 0.3);
             background-color: #0B1024; 
         }
         
@@ -197,13 +197,13 @@
             font-size: 2.8rem; 
             font-weight: 800; 
             letter-spacing: 4px; 
-            background: linear-gradient(45deg, #35D6FF, #8B7CFF, #FF5CC8); 
+            background: linear-gradient(45deg, #35D6FF, #8B7CFF, #FFD700); 
             background-clip: text; 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             margin-bottom: 15px; 
             text-transform: uppercase;
-            filter: drop-shadow(0 0 12px rgba(53, 214, 255, 0.28));
+            filter: drop-shadow(0 0 12px rgba(53, 214, 255, 0.35));
         }
 
         p.slogan { 
@@ -489,7 +489,6 @@ Semua setara dalam ruang yang sama.</p>
         <div class="roblox-card">
             <div class="page-title">Map Roblox Amerta</div>
             <div class="roblox-grid">
-                <!-- Map Item -->
                 <div class="roblox-item">
                     <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60" alt="Map Roblox Amerta" class="roblox-img">
                     <div class="roblox-details">
@@ -527,17 +526,14 @@ Semua setara dalam ruang yang sama.</p>
 
         // Fungsi Perpindahan Tampilan Halaman
         function showPage(pageId) {
-            // Sembunyikan semua page
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
 
-            // Tampilkan page yang dipilih
             const selectedPage = document.getElementById(pageId);
             if (selectedPage) {
                 selectedPage.classList.add('active');
             }
 
-            // Tutup dropdown menu setelah diklik
             navLinks.classList.remove('active');
         }
     </script>
